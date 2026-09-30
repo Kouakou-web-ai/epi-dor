@@ -16,7 +16,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Manrope:wght@400;500;800&display=swap" rel="stylesheet">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Bakery","name":"L'Épi d'Or Bingerville","description":"Boulangerie, pâtisserie et glacier à la nouvelle gare de Bingerville.","priceRange":"$","telephone":"+2250507111013","address":{"@type":"PostalAddress","streetAddress":"Nouvelle gare de Bingerville","addressLocality":"Bingerville","addressCountry":"CI"},"geo":{"@type":"GeoCoordinates","latitude":5.3530283,"longitude":-3.877301},"hasMap":"https://www.google.com/maps/search/?api=1&query=5.3530283,-3.877301"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Bakery","name":"L'Épi d'Or Bingerville","description":"Boulangerie, pâtisserie et glacier à la nouvelle gare de Bingerville.","priceRange":"$","telephone":"+2250172649110","address":{"@type":"PostalAddress","streetAddress":"Nouvelle gare de Bingerville","addressLocality":"Bingerville","addressCountry":"CI"},"geo":{"@type":"GeoCoordinates","latitude":5.3530283,"longitude":-3.877301},"hasMap":"https://www.google.com/maps/search/?api=1&query=5.3530283,-3.877301"}</script>
 <style>
 :root{--gold:#f6b93b;--cream:#fff6e2;--g:#0f5a3c;--g9:#083a27;--brown:#7a3f17;--rose:#f7c6c0;--mint:#cfe9d6;--sky:#cfe6f5;--sun:#ffe08a;--peach:#ffd3a6;--ink:#1c2b22;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -28,11 +28,20 @@ a{color:inherit}:focus-visible{outline:3px solid var(--g9);outline-offset:3px}
 .wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
 svg.i{display:block;width:100%;height:auto;overflow:visible}
 header{position:fixed;inset:env(safe-area-inset-top,0px) 0 auto 0;z-index:20;transition:.4s}
-header.s{background:rgba(255,246,226,.95);backdrop-filter:blur(10px);box-shadow:0 2px 0 rgba(15,90,60,.12)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:4.5rem}
-.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--g9);font:900 1.5rem Fraunces,serif}
+header.s{background:rgba(255,246,226,.95);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 2px 0 rgba(15,90,60,.12)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:4.5rem;position:relative}
+.brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--g9);font:900 1.5rem Fraunces,serif;z-index:25}
 .brand svg{width:2.6rem;height:2.6rem}
-nav a{margin-left:1.5rem;text-decoration:none;font-weight:800;font-size:.95rem;color:var(--g9)}
+nav{display:flex;align-items:center}
+nav a{margin-left:1.5rem;text-decoration:none;font-weight:800;font-size:.95rem;color:var(--g9);transition:color .2s}
+nav a:hover{color:var(--g)}
+.nav-wa{display:none}
+.hamb{display:none;background:transparent;border:0;cursor:pointer;width:44px;height:44px;padding:9px 7px;position:relative;z-index:25;flex-direction:column;justify-content:space-between;align-items:center;border-radius:.8rem}
+.hamb:focus-visible{outline:3px solid var(--g9);outline-offset:2px}
+.hamb span{display:block;width:26px;height:3px;background:var(--g9);border-radius:99px;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .2s ease}
+.hamb.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamb.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamb.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
 .btn{display:inline-block;background:var(--g);color:#fff;padding:1rem 1.8rem;border-radius:99px;font:800 1rem Manrope,sans-serif;text-decoration:none;border:0;cursor:pointer;box-shadow:0 6px 0 var(--g9);transition:transform .2s,box-shadow .2s}
 .btn:hover{transform:translateY(3px);box-shadow:0 3px 0 var(--g9)}
 .btn.w{background:#fff;color:var(--g9);box-shadow:0 6px 0 rgba(8,58,39,.35)}
@@ -77,37 +86,73 @@ input:focus,select:focus,textarea:focus{border-color:var(--g);outline:0}
 .map{border-radius:2rem;background:var(--mint);min-height:340px;position:relative;overflow:hidden;display:grid;place-items:center}
 .map>svg{position:absolute;inset:0;width:100%;height:100%}
 .pin{position:relative;width:26px;height:26px;border-radius:50%;background:#e2452f;border:4px solid #fff;animation:pl 2.2s infinite}
-footer{background:var(--g9);color:var(--mint);padding:2.5rem 0}footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
-.wa{position:fixed;right:1.1rem;bottom:calc(1.1rem + env(safe-area-inset-bottom,0px));z-index:30;background:var(--g);color:#fff;padding:.9rem 1.4rem;border-radius:99px;font-weight:800;text-decoration:none;border:3px solid #fff;box-shadow:0 10px 26px rgba(8,58,39,.4)}
+footer{background:var(--g9);color:var(--mint);padding:2.5rem 0}footer .wrap{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center}
+.wa{position:fixed;right:1.1rem;bottom:calc(1.1rem + env(safe-area-inset-bottom,0px));z-index:30;background:var(--g);color:#fff;padding:.9rem 1.4rem;border-radius:99px;font-weight:800;text-decoration:none;border:3px solid #fff;box-shadow:0 10px 26px rgba(8,58,39,.4);display:inline-flex;align-items:center}
 .rv{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.2,1)}.rv.in{opacity:1;transform:none}
 @keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
 @keyframes bob{50%{translate:0 -14px}}
 @keyframes pop{from{opacity:0;scale:.4;translate:-40px 40px}to{opacity:1}}
 @keyframes pl{0%{box-shadow:0 0 0 0 rgba(226,69,47,.6)}80%,100%{box-shadow:0 0 0 30px rgba(226,69,47,0)}}
-@media(max-width:860px){nav a:not(.btn){display:none}.hero .wrap,.band,.og,.loc{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.stage{max-width:340px;order:-1}.two{grid-template-columns:1fr}}
+@media(max-width:860px){
+  .hamb{display:flex}
+  nav#main-nav{
+    position:fixed;top:4.5rem;left:0;right:0;
+    background:rgba(255,246,226,.98);
+    backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    box-shadow:0 18px 36px rgba(8,58,39,.18);
+    border-bottom:2px solid rgba(15,90,60,.12);
+    padding:1.4rem 1.5rem 2rem;
+    display:flex;flex-direction:column;gap:1rem;
+    transform:translateY(-120%);opacity:0;visibility:hidden;
+    transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .3s ease,visibility .35s;
+    z-index:19;max-height:calc(100vh - 4.5rem);overflow-y:auto
+  }
+  nav#main-nav.open{transform:translateY(0);opacity:1;visibility:visible}
+  nav#main-nav a{margin-left:0!important;font-size:1.15rem;padding:.75rem 1rem;border-radius:.9rem;background:rgba(15,90,60,.04);display:flex;align-items:center;justify-content:space-between}
+  nav#main-nav a.btn{justify-content:center;margin-top:.4rem;padding:.9rem 1.4rem}
+  .nav-wa{display:flex!important;justify-content:center!important;font-weight:800;color:var(--g);background:var(--mint)!important;border:2px solid var(--g)}
+
+  .hero{position:relative;overflow:hidden;min-height:500px}
+  .hero .wrap{display:flex;flex-direction:column;justify-content:center;position:relative;padding-top:6.5rem;padding-bottom:5rem}
+  .stage{position:absolute;inset:0;margin:auto;max-width:320px;width:82%;opacity:.22;pointer-events:none;z-index:1;order:initial}
+  .hero .wrap>div:first-child{position:relative;z-index:2}
+  .hero h1{font-size:clamp(2.1rem,7.5vw,3rem);text-shadow:0 2px 14px rgba(255,246,226,.95)}
+  .hero p{font-size:1.05rem;font-weight:600;color:#3b2807;text-shadow:0 1px 10px rgba(255,246,226,.9)}
+
+  .band,.og,.loc{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .two{grid-template-columns:1fr}
+}
 @media(max-width:560px){.grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
 [hidden]{display:none!important}
 .pc{cursor:pointer}
 .chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:2rem 0}
-.chips button{font:800 .95rem Manrope,sans-serif;padding:.6rem 1.2rem;border-radius:99px;border:2px solid var(--g9);background:transparent;color:var(--g9);cursor:pointer}
+.chips button{font:800 .95rem Manrope,sans-serif;padding:.6rem 1.2rem;border-radius:99px;border:2px solid var(--g9);background:transparent;color:var(--g9);cursor:pointer;transition:all .2s ease}
 .chips button.on{background:var(--g9);color:#fff}
-.pl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-.it{border-radius:1.6rem;padding:1.2rem;display:flex;flex-direction:column;gap:.3rem}
-.it .art{height:115px;display:grid;place-items:center;margin-bottom:.6rem}.it .art svg{height:100%;width:auto;max-width:100%}
-.it h3{font-size:1.35rem;color:var(--g9)}.it small{font-weight:700;color:#5b4a2a}
+.chips button:hover:not(.on){background:rgba(8,58,39,.08)}
+.pl{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.it{border-radius:1.6rem;padding:1.2rem;display:flex;flex-direction:column;gap:.35rem;transition:transform .3s ease,box-shadow .3s ease;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.it:hover{transform:translateY(-6px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
+.it .art{height:170px;border-radius:1.2rem;overflow:hidden;margin-bottom:.7rem;box-shadow:0 4px 12px rgba(0,0,0,.08);background:rgba(255,255,255,.6);display:block}
+.it .art img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.it:hover .art img{transform:scale(1.06)}
+.it .art svg{width:100%;height:100%;max-height:100%}
+.it h3{font-size:1.35rem;color:var(--g9);margin-top:.2rem}.it small{font-weight:700;color:#5b4a2a}
 .it .pr{font:900 1.3rem Fraunces,serif;color:var(--g9);margin-top:.2rem}
-.it .btn{margin-top:.8rem;padding:.7rem 1.2rem;font-size:.95rem;box-shadow:0 4px 0 var(--g9);text-align:center}
+.it .btn{margin-top:auto;padding:.75rem 1.2rem;font-size:.95rem;box-shadow:0 4px 0 var(--g9);text-align:center}
 .pg{padding-top:7rem}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin:2.5rem 0}
 .facts div{border-radius:1.6rem;padding:1.4rem}.facts h3{font-size:1.4rem;color:var(--g9);margin-bottom:.4rem}
 .md{position:fixed;inset:0;background:rgba(8,58,39,.65);display:grid;place-items:center;z-index:50;padding:1rem;overflow:auto}
 .md form{width:min(520px,100%);max-height:94svh;overflow:auto}
+.modal-art{height:160px;width:100%;border-radius:1.2rem;overflow:hidden;margin-bottom:.8rem;box-shadow:0 4px 12px rgba(0,0,0,.1);background:rgba(255,255,255,.5)}
+.modal-art img{width:100%;height:100%;object-fit:cover;display:block}
+.modal-art svg{width:100%;height:100%}
 .qty{display:flex;gap:.5rem}.qty input{width:5rem;text-align:center}.qty button{width:3rem;border-radius:1rem;border:2px solid #e3cf9f;background:#fff;font:800 1.3rem Manrope,sans-serif;cursor:pointer}
 .tot{font:900 1.3rem Fraunces,serif;color:var(--g9)}
 .x{justify-self:end;background:none;border:0;font:800 1rem Manrope,sans-serif;color:var(--g9);cursor:pointer;text-decoration:underline}
-@media(max-width:860px){.pl,.facts{grid-template-columns:1fr 1fr}}@media(max-width:560px){.pl,.facts{grid-template-columns:1fr}}
-.it .art img{width:100%;height:100%;object-fit:cover;border-radius:1rem}</style>
+@media(max-width:860px){.pl,.facts{grid-template-columns:1fr 1fr}}@media(max-width:560px){.pl,.facts{grid-template-columns:1fr}}</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -122,7 +167,8 @@ footer{background:var(--g9);color:var(--mint);padding:2.5rem 0}footer .wrap{disp
 
 <header id="h"><div class="wrap nav">
 <a class="brand" href="#top" aria-label="L'Épi d'Or, accueil"><svg><use href="#lg"/></svg>L'Épi d'Or</a>
-<nav><a href="#catalogue">Catalogue</a><a href="#apropos">À propos</a><a href="#lieu">Nous trouver</a><a class="btn" href="#commande" style="margin-left:1.5rem;padding:.7rem 1.3rem;box-shadow:0 4px 0 var(--g9)">Commander</a></nav>
+<button id="menu-btn" class="hamb" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span></span></button>
+<nav id="main-nav"><a href="#catalogue">Catalogue</a><a href="#apropos">À propos</a><a href="#lieu">Nous trouver</a><a class="btn" href="#commande" style="margin-left:1.5rem;padding:.7rem 1.3rem;box-shadow:0 4px 0 var(--g9)">Commander</a><a class="nav-wa" href="https://wa.me/2250172649110" target="_blank" rel="noopener">📱 WhatsApp : +225 01 72 64 91 10</a></nav>
 </div></header>
 
 <main id="top"><div id="p-home">
@@ -184,19 +230,21 @@ footer{background:var(--g9);color:var(--mint);padding:2.5rem 0}footer .wrap{disp
 <label>Téléphone à appeler<input id="at" type="tel" inputmode="tel" placeholder="07 00 00 00 00"></label>
 <p class="err" id="ae" role="alert"></p><button class="btn" type="submit">Valider l'adresse</button></form></div>
 <div id="md" class="md" hidden><form id="mf" novalidate>
-<button class="x" type="button" id="mx">Fermer</button><h3 id="mt" style="font-size:1.7rem;color:var(--g9)"></h3><p id="mp" style="margin:0"></p>
+<button class="x" type="button" id="mx">Fermer</button>
+<div id="mimg" class="modal-art"></div>
+<h3 id="mt" style="font-size:1.7rem;color:var(--g9)"></h3><p id="mp" style="margin:0"></p>
 <label>Quantité<div class="qty"><button type="button" id="mm" aria-label="Moins">-</button><input id="mq" type="number" min="1" value="1"><button type="button" id="mpl" aria-label="Plus">+</button></div></label>
 <label>Votre nom<input id="mn" autocomplete="name"></label>
 <label>Retrait ou livraison<select id="mm2"><option>Retrait en boutique</option><option>Livraison à domicile</option></select></label>
 <label id="mad" hidden>Adresse de livraison précise<textarea id="ma" rows="3" placeholder="Commune, quartier, rue, bâtiment, repère connu, numéro de téléphone"></textarea></label>
 <div class="tot" id="mt2"></div><p class="err" id="me" role="alert"></p>
 <button class="btn" type="submit">Envoyer sur WhatsApp</button></form></div>
-<footer><div class="wrap"><span>L'Épi d'Or, nouvelle gare de Bingerville, Abidjan, Côte d'Ivoire</span><span>Boulangerie, pâtisserie, glaces</span></div></footer>
-<a class="wa" href="#commande">Commander</a>
+<footer><div class="wrap"><span><strong>L'Épi d'Or</strong> · Nouvelle gare de Bingerville, Abidjan, Côte d'Ivoire</span><span><a href="https://wa.me/2250172649110" target="_blank" rel="noopener" style="color:var(--sun);font-weight:800;text-decoration:none">💬 WhatsApp : +225 01 72 64 91 10</a></span><span>Boulangerie, viennoiseries, pâtisseries &amp; glaces artisanales</span></div></footer>
+<a class="wa" href="https://wa.me/2250172649110" target="_blank" rel="noopener" aria-label="Commander sur WhatsApp">💬 Commander (+225 01 72 64 91 10)</a>
 
 <script>
-// Numéro WhatsApp de la boulangerie (format international, sans + ni espaces). À vérifier avant mise en ligne.
-var WA="2250507111013";
+// Numéro WhatsApp officiel de la boulangerie pour les commandes
+var WA="2250172649110";
 var h=document.getElementById("h");
 addEventListener("scroll",function(){h.classList.toggle("s",scrollY>40)},{passive:true});
 var io=new IntersectionObserver(function(a){a.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");io.unobserve(x.target)}})},{threshold:.12});
@@ -219,18 +267,32 @@ var n=$("n").value.trim(),t=$("t").value.trim(),e=$("e"),l=$("m").value.indexOf(
 if(!n||!t){e.textContent="Indiquez votre nom et le détail de votre commande.";return}
 if(l&&!a){e.textContent="Choisissez le lieu de livraison.";openA();return}
 e.textContent="";
-wa("Bonjour L'Épi d'Or, je souhaite passer une commande.\nNom : "+n+"\nService : "+$("s").value+"\nMode : "+$("m").value+(l?"\nAdresse de livraison : "+a:"")+"\nDate et heure : "+($("d").value.trim()||"à convenir")+"\nCommande : "+t);
+wa("Bonjour L'Épi d'Or, je souhaite passer une commande.\nNom : "+n+"\nService : "+$("s").value+"\nMode : "+$("m").value+(l?"\n"+a:"")+"\nDétails :\n"+t);
 });
+var mb=$("menu-btn"),mnv=$("main-nav");
+function closeMnu(){if(mnv&&mnv.classList.contains("open")){mnv.classList.remove("open");mb.classList.remove("open");mb.setAttribute("aria-expanded","false");mb.setAttribute("aria-label","Ouvrir le menu")}}
+if(mb&&mnv){
+  mb.addEventListener("click",function(e){
+    e.stopPropagation();
+    var op=mnv.classList.toggle("open");
+    mb.classList.toggle("open",op);
+    mb.setAttribute("aria-expanded",op?"true":"false");
+    mb.setAttribute("aria-label",op?"Fermer le menu":"Ouvrir le menu");
+  });
+  mnv.querySelectorAll("a").forEach(function(a){a.addEventListener("click",closeMnu)});
+  document.addEventListener("click",function(e){if(!mnv.contains(e.target)&&!mb.contains(e.target))closeMnu()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeMnu()});
+}
 var C=["Pains","Viennoiseries","Gâteaux","Glaces","Boissons","Événements"],
 VB={Pains:"0 0 300 70",Viennoiseries:"0 0 220 130","Gâteaux":"0 0 180 170",Glaces:"0 0 110 190",Boissons:"0 0 130 190","Événements":"0 0 190 150"},
 BG={Pains:"var(--peach)",Viennoiseries:"var(--sun)","Gâteaux":"var(--rose)",Glaces:"var(--sky)",Boissons:"var(--mint)","Événements":"#fff"},
 SY={Pains:"bag",Viennoiseries:"cro","Gâteaux":"cak",Glaces:"ice",Boissons:"jus","Événements":"ev"},
-P=[["Pains","Petite baguette","100 g",100,"bag",.55],["Pains","Baguette","150 g",150,"bag",.75],["Pains","Baguette","250 g",200,"bag",.9],["Pains","Grande baguette","350 g",300,"bag",1],["Pains","Pain rond","300 g",300,"loaf","#d98b3a"],["Pains","Pain complet","300 g",300,"loaf","#a9713a"],
-["Viennoiseries","Croissant","60 g",300,"cro"],["Viennoiseries","Pain au chocolat","75 g",350,"pch"],["Viennoiseries","Pain suisse","80 g",350,"sw"],["Viennoiseries","Pain au lait","60 g",250,"lait"],["Viennoiseries","Pain au raisin","85 g",350,"rai"],["Viennoiseries","Chausson aux pommes","90 g",400,"chs"],["Viennoiseries","Brioche","60 g",250,"bri"],
-["Gâteaux","Forêt noire, la part","120 g",1000,"cake","#fff","#4a2412"],["Gâteaux","Fraisier, la part","120 g",1000,"cake","#f7c6c0","#f5d9a0"],["Gâteaux","Opéra, la part","110 g",1000,"cake","#3a1c0e","#c99a4b"],["Gâteaux","Tarte au citron, la part","110 g",800,"tart","#f4dc4d"],["Gâteaux","Éclair au chocolat","90 g",500,"ecl","#5a2d12"],["Gâteaux","Millefeuille","120 g",700,"mil"],["Gâteaux","Gâteau d'anniversaire, 6 personnes","800 g",12000,"cake","#f7a9c0","#fff0cf"],["Gâteaux","Gâteau d'anniversaire, 10 personnes","1,3 kg",20000,"cake","#9fe3c4","#fff0cf"],
-["Glaces","Cornet chocolat","1 boule",500,"cone","#6b3a1e"],["Glaces","Cornet vanille","1 boule",500,"cone","#fff0cf"],["Glaces","Cornet menthe","1 boule",500,"cone","#9fe3c4"],["Glaces","Cornet fraise","1 boule",500,"cone","#f7a9c0"],["Glaces","Double chocolat et vanille","2 boules",1000,"cone","#6b3a1e","#fff0cf"],["Glaces","Double menthe et chocolat","2 boules",1000,"cone","#9fe3c4","#6b3a1e"],["Glaces","Double fraise et vanille","2 boules",1000,"cone","#f7a9c0","#fff0cf"],
-["Boissons","Coca-Cola","33 cl",400,"can","#d9302b","#fff"],["Boissons","Fanta","33 cl",400,"can","#ff8a00","#7ad14a"],["Boissons","Sprite","33 cl",400,"can","#1e9a4a","#d8f24a"],["Boissons","Eau minérale","50 cl",200,"can","#3a8fd9","#fff"],
-["Événements","Plateau de 20 viennoiseries","1,2 kg",9000,"cro"],["Événements","Plateau de 30 mini-pâtisseries","1,5 kg",15000,"ecl","#5a2d12"],["Événements","Pack petit-déjeuner, 10 personnes","3 kg",25000,"bag",1],["Événements","Cocktail salé et sucré, 50 pièces","3,5 kg",30000,"mil"],["Événements","Gâteau de cérémonie","selon le projet",0,"ev"]];
+P=[["Pains","Petite baguette","100 g",100,"bag",.55,null,"photos/prod-baguette.jpg"],["Pains","Baguette","150 g",150,"bag",.75,null,"photos/prod-baguette.jpg"],["Pains","Baguette","250 g",200,"bag",.9,null,"photos/prod-baguette.jpg"],["Pains","Grande baguette","350 g",300,"bag",1,null,"photos/prod-baguette.jpg"],["Pains","Pain rond","300 g",300,"loaf","#d98b3a",null,"photos/prod-pain-rond.jpg"],["Pains","Pain complet","300 g",300,"loaf","#a9713a",null,"photos/prod-pain-complet.jpg"],
+["Viennoiseries","Croissant","60 g",300,"cro",null,null,"photos/prod-croissant.jpg"],["Viennoiseries","Pain au chocolat","75 g",350,"pch",null,null,"photos/prod-pain-chocolat.jpg"],["Viennoiseries","Pain suisse","80 g",350,"sw",null,null,"photos/prod-pain-suisse.jpg"],["Viennoiseries","Pain au lait","60 g",250,"lait",null,null,"photos/prod-pain-lait.jpg"],["Viennoiseries","Pain au raisin","85 g",350,"rai",null,null,"photos/prod-pain-raisin.jpg"],["Viennoiseries","Chausson aux pommes","90 g",400,"chs",null,null,"photos/prod-chausson-pommes.jpg"],["Viennoiseries","Brioche","60 g",250,"bri",null,null,"photos/prod-brioche.jpg"],
+["Gâteaux","Forêt noire, la part","120 g",1000,"cake","#fff","#4a2412","photos/prod-foret-noire.jpg"],["Gâteaux","Fraisier, la part","120 g",1000,"cake","#f7c6c0","#f5d9a0","photos/prod-fraisier.jpg"],["Gâteaux","Opéra, la part","110 g",1000,"cake","#3a1c0e","#c99a4b","photos/prod-opera.jpg"],["Gâteaux","Tarte au citron, la part","110 g",800,"tart","#f4dc4d",null,"photos/prod-tarte-citron.jpg"],["Gâteaux","Éclair au chocolat","90 g",500,"ecl","#5a2d12",null,"photos/prod-eclair-chocolat.jpg"],["Gâteaux","Millefeuille","120 g",700,"mil",null,null,"photos/prod-millefeuille.jpg"],["Gâteaux","Gâteau d'anniversaire, 6 personnes","800 g",12000,"cake","#f7a9c0","#fff0cf","photos/prod-gateau-anniv.jpg"],["Gâteaux","Gâteau d'anniversaire, 10 personnes","1,3 kg",20000,"cake","#9fe3c4","#fff0cf","photos/gateaux.jpg"],
+["Glaces","Cornet chocolat","1 boule",500,"cone","#6b3a1e",null,"photos/prod-glace-chocolat.jpg"],["Glaces","Cornet vanille","1 boule",500,"cone","#fff0cf",null,"photos/prod-glace-vanille.jpg"],["Glaces","Cornet menthe","1 boule",500,"cone","#9fe3c4",null,"photos/prod-glace-menthe.jpg"],["Glaces","Cornet fraise","1 boule",500,"cone","#f7c6c0",null,"photos/prod-glace-fraise.jpg"],["Glaces","Double chocolat et vanille","2 boules",1000,"cone","#6b3a1e","#fff0cf","photos/prod-glace-double.jpg"],["Glaces","Double menthe et chocolat","2 boules",1000,"cone","#9fe3c4","#6b3a1e","photos/prod-glace-double.jpg"],["Glaces","Double fraise et vanille","2 boules",1000,"cone","#f7c6c0","#fff0cf","photos/prod-glace-double.jpg"],
+["Boissons","Coca-Cola","33 cl",400,"can","#d9302b","#fff","photos/prod-coca-cola.jpg"],["Boissons","Fanta","33 cl",400,"can","#ff8a00","#7ad14a","photos/prod-fanta.jpg"],["Boissons","Sprite","33 cl",400,"can","#1e9a4a","#d8f24a","photos/prod-sprite.jpg"],["Boissons","Eau minérale","50 cl",200,"can","#3a8fd9","#fff","photos/prod-eau.jpg"],
+["Événements","Plateau de 20 viennoiseries","1,2 kg",9000,"cro",null,null,"photos/prod-plateau-viennoiseries.jpg"],["Événements","Plateau de 30 mini-pâtisseries","1,5 kg",15000,"ecl","#5a2d12",null,"photos/prod-plateau-patisseries.jpg"],["Événements","Pack petit-déjeuner, 10 personnes","3 kg",25000,"bag",1,null,"photos/prod-pack-dej.jpg"],["Événements","Cocktail salé et sucré, 50 pièces","3,5 kg",30000,"mil",null,null,"photos/prod-cocktail.jpg"],["Événements","Gâteau de cérémonie","selon le projet",0,"ev",null,null,"photos/prod-piece-montee.jpg"]];
 function art(p){var t=p[4],a=p[5],b=p[6],o=' stroke="#8a4b22" stroke-width="4"',v="0 0 200 120",g="";
 if(t=="bag"){v="0 0 300 70";g='<g transform="scale('+a+' 1)"><rect x="4" y="6" width="292" height="58" rx="29" fill="#d98b3a"'+o+'/><path d="M50 20l22 30M100 18l22 32M150 18l22 32M200 18l22 32M250 20l20 30" stroke="#f7d08a" stroke-width="9" stroke-linecap="round"/></g>'}
 else if(t=="loaf")g='<ellipse cx="100" cy="70" rx="88" ry="48" fill="'+a+'"'+o+'/><path d="M55 45l20 40M95 38l16 46M135 45l16 40" stroke="#f7d08a" stroke-width="8" stroke-linecap="round"/>';
@@ -252,13 +314,13 @@ var cur=null;
 function render(c){
 $("chips").innerHTML=["Tous"].concat(C).map(function(x){return '<button class="'+(x==c?"on":"")+'" data-c="'+x+'">'+x+'</button>'}).join("");
 $("pl").innerHTML=P.map(function(p,k){return p}).filter(function(p){return c=="Tous"||p[0]==c}).map(function(p){var k=P.indexOf(p);
-return '<div class="it" style="background:'+BG[p[0]]+'"><div class="art">'+(p[7]?'<img src="'+p[7]+'" alt="'+p[1]+'">':art(p))+'</div><small>'+p[0]+'</small><h3>'+p[1]+'</h3><small>'+p[2]+'</small><div class="pr">'+fc(p[3])+'</div><button class="btn" data-k="'+k+'">Commander</button></div>'}).join("");
+return '<div class="it" style="background:'+BG[p[0]]+'"><div class="art">'+(p[7]?'<img src="'+p[7]+'" alt="'+p[1]+'" loading="lazy">':art(p))+'</div><small>'+p[0]+'</small><h3>'+p[1]+'</h3><small>'+p[2]+'</small><div class="pr">'+fc(p[3])+'</div><button class="btn" data-k="'+k+'">Commander</button></div>'}).join("");
 }
 $("chips").addEventListener("click",function(e){var b=e.target.closest("button");if(b)location.hash=b.dataset.c=="Tous"?"catalogue":"catalogue-"+encodeURIComponent(b.dataset.c)});
 $("pl").addEventListener("click",function(e){var b=e.target.closest("button");if(b)openM(P[b.dataset.k])});
 document.querySelectorAll(".pc").forEach(function(c){c.addEventListener("click",function(e){var h=c.getAttribute("href");if(h&&h.charAt(0)=="#"){e.preventDefault();location.hash=h.slice(1);route()}})});
 function tot(){var q=Math.max(1,parseInt($("mq").value)||1);$("mt2").textContent=cur[3]?"Total indicatif : "+fc(cur[3]*q):"Prix communiqué sur devis"}
-function openM(p){cur=p;$("mt").textContent=p[1];$("mp").textContent=p[2]+" · "+fc(p[3]);$("mq").value=1;$("me").textContent="";tot();$("md").hidden=false}
+function openM(p){cur=p;$("mt").textContent=p[1];$("mp").textContent=p[2]+" · "+fc(p[3]);var mi=$("mimg");if(mi){mi.innerHTML=p[7]?'<img src="'+p[7]+'" alt="'+p[1]+'">':art(p)}$("mq").value=1;$("me").textContent="";tot();$("md").hidden=false}
 $("mx").onclick=function(){$("md").hidden=true};
 $("md").addEventListener("click",function(e){if(e.target==this)this.hidden=true});
 $("mm").onclick=function(){$("mq").value=Math.max(1,(parseInt($("mq").value)||1)-1);tot()};
